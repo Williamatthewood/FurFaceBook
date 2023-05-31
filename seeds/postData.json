@@ -1,42 +1,40 @@
 [
     {
         "title": "On Pawcation",
-        "content": "Enjoying some days off with my human. I'm on pawcation!",
-        "user_id": "1"
+        "content": "Enjoying some days off with my human. I'm on pawcation!"
     },
     {
         "title": "Second Birthday",
-        "content": "Today is my second birthday. I'm so excited!",
-        "user_id": "2"
+        "content": "Today is my second birthday. I'm so excited!"
     },
     {
         "title": "Love treats!",
-        "content": "I love treats! I can't get enough of them.",
-        "user_id": "3"
+        "content": "I love treats! I can't get enough of them."
+
     },
     {
         "title": "Getting ready for the weekend",
-        "content": "I'm getting ready for the weekend. I'm going to the park!",
-        "user_id": "1"
+        "content": "I'm getting ready for the weekend. I'm going to the park!"
+
     },
     {
         "title": "Hanging out with my friends",
-        "content": "I'm hanging out with my friends. We're having a great time!",
-        "user_id": "3"
+        "content": "I'm hanging out with my friends. We're having a great time!"
+
     },
     {
         "title": "I'm so tired",
-        "content": "I'm so tired. I've been playing all day.",
-        "user_id": "2"
+        "content": "I'm so tired. I've been playing all day."
+
     },
     {
         "title": "I'm so excited",
-        "content": "I'm so excited. I'm going to the beach!",
-        "user_id": "1"
+        "content": "I'm so excited. I'm going to the beach!"
+
     },
     {
         "title": "Getting hungry",
-        "content": "I'm getting hungry. I want some food!",
-        "user_id": "3"
+        "content": "I'm getting hungry. I want some food!"
+
     }
 ]
