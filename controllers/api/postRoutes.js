@@ -2,6 +2,21 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
+router.get('/', async (req, res) => {
+    try {
+      // Get all projects and JOIN with user data
+      const postData = await Post.findAll();
+        console.log(postData);
+      // Serialize data so the template can read it
+  
+      // Pass serialized data and session flag into template
+      res.status(200).json(postData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
