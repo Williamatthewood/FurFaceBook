@@ -3,21 +3,35 @@ const newFormHandler = async (event) => {
   
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
+    const image = document.querySelector('#post-image').files[0];
   
     if (title && content) {
-      const response = await fetch(`/api/post`, {
-        method: 'POST',
-        body: JSON.stringify({ title, content }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/profile');
-      } else {
-        alert('Failed to create post');
+      const formData = new FormData();
+
+      formData.append('title', title);
+      formData.append('content', content);
+      if (image){
+        formData.append('image', image);
       }
+      
+      try {
+        const response = await fetch('/api/post', {
+          method:'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          document.location.replace('/profile');
+        } else {
+          alert('Failed to create post');
+        }
+      }
+      catch (error){
+        console.error(error);
+        alert('Failed to create post')
+      }
+  
+      
     }
   };
   
@@ -37,9 +51,9 @@ const newFormHandler = async (event) => {
     }
   };
   
-  // document
-  //   .querySelector('.new-post-form')
-  //   .addEventListener('submit', newFormHandler);
+  document
+    .querySelector('.new-post-form')
+    .addEventListener('submit', newFormHandler);
   
   document
     .querySelector('.post-list')
