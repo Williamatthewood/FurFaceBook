@@ -7,7 +7,7 @@ const path = require('path');
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, '../../images')
+    callBack(null, 'images')
   },
   filename: (req, file, callBack) => {
     console.log(file);
