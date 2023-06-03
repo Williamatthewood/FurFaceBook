@@ -5,17 +5,31 @@ const path = require('path');
 
 //multer code
 const multer = require('multer');
+
 const storage = multer.diskStorage({
-  destination: (req, file, callBack) => {
-    callBack(null, 'images')
+  destination: (req, file, cb) => {
+    cb(null, 'images');
   },
-  filename: (req, file, callBack) => {
+  filename: (req, file, cb) => {
     console.log(file);
-    callBack(null, Date.now() + path.extname(file.originalname))
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 })
 
-const upload = multer({storage: storage})
+const upload = multer({ 
+  storage: storage,
+  limits: {fileSize: '1000000'},
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/
+    const mimType = fileTypes.test(file.mimetype)
+    const extname = fileTypes.test(path.extname(file.originalname))
+
+    if(mimType && extname) {
+      return cb(null, true)
+    }
+    cb('Give proper files format to upload')
+  } 
+}).single('image')
 
 
 router.get('/', async (req, res) => {
@@ -32,13 +46,16 @@ router.get('/', async (req, res) => {
     }
   });
 
-router.post('/', withAuth, upload.single('image'), async (req, res) => {
+router.post('/', upload, async (req, res) => {
   try {
     const newPost = await Post.create({
-      ...req.body,
+      image: req.file.path,
+      title: req.body.title,
+      content: req.body.content,
       user_id: req.session.user_id,
     });
 
+    console.log(req.file, req.body );
     res.status(200).json(newPost);
   } catch (err) {
     res.status(400).json(err);

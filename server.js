@@ -38,6 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+//static images folder
+app.use('/images', express.static('./images'));
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(
