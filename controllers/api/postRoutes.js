@@ -1,6 +1,21 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
+const path = require('path');
+
+//multer code
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, callBack) => {
+    callBack(null, '../../images')
+  },
+  filename: (req, file, callBack) => {
+    console.log(file);
+    callBack(null, Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({storage: storage})
 
 
 router.get('/', async (req, res) => {
@@ -17,7 +32,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', withAuth, upload.single('image'), async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,
