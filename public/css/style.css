@@ -1,1 +1,5 @@
-/* Styles given to main.handlebars */
+h1 a:hover {
+    color: white;
+    text-decoration: none;
+}
+

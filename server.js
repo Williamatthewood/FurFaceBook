@@ -16,7 +16,7 @@ const sess = {
   secret: 'Super secret secret',
   cookie: {
     // Stored in milliseconds
-    maxAge: 60 * 1000, // expires after 1 day
+    maxAge: 60 * 60 * 1000, // expires after 1 hour
   },
   resave: false,
   saveUninitialized: true,
@@ -37,6 +37,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+//static images folder
+app.use('/images', express.static('./images'));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>

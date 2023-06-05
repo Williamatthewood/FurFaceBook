@@ -7,11 +7,10 @@
     </h2>
     
     <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+    
   </div>
   <div class="col-md-7">
-    <p>
-      {{post.content}}
-    </p>
+    <img src={{post.image}}>
   </div>
 </div>
 {{/each}}
