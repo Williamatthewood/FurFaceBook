@@ -1,23 +1,20 @@
 [
-{
-    "title": "Billy's Dog",
-    "description": "Huskie",
-    "date_on": "05/30/2023"
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    {
+        "title": "Birthday Party",
+        "description": "Come to my birthday party!!!",
+        "date_on": "2023-07-14",
+        "user_id": 1
+    },
+    {
+        "title": "Fundraiser",
+        "description": "We will be raising money for the homeless",
+        "date_on": "2023-08-20",
+        "user_id": 4
+    },
+    {
+        "title": "Yappy Hour",
+        "description": "Bring your pet to the bar",
+        "date_on": "2023-06-20",
+        "user_id": 3
+    }
 ]
