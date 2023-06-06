@@ -55,12 +55,9 @@ router.post('/', upload, async (req, res) => {
   if (req.file){
     newPostData.image = req.file.path;
   }
-
-  console.log(newPostData);
+  
   try {
     const newPost = await Post.create(newPostData);
-
-    console.log(req.file, req.body );
     res.status(200).json(newPost);
   } catch (err) {
     res.status(400).json(err);

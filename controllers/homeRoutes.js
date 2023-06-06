@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Event } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -17,9 +17,21 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
+    const eventData = await Event.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const events = eventData.map((event) => event.get({ plain: true }));
+
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      posts, 
+      posts,
+      events, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -42,7 +54,8 @@ router.get('/post/:id', async (req, res) => {
 
     res.render('post', {
       ...post,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      is_heroku: req.session.is_heroku
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,7 +68,10 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
+      include: [
+        { model: Post },
+        { model: Event }
+      ]
     });
 
     const user = userData.get({ plain: true });
@@ -63,6 +79,32 @@ router.get('/profile', withAuth, async (req, res) => {
     res.render('profile', {
       ...user,
       logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/event', withAuth, async (req, res) => {
+  try {
+    // Get all events and JOIN with user data
+    const eventData = await Event.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const events = eventData.map((event) => event.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('event', {
+      events,
+      logged_in: req.session.logged_in,
+      is_heroku: req.session.is_heroku
     });
   } catch (err) {
     res.status(500).json(err);

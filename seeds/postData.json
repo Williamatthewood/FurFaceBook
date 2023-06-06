@@ -2,7 +2,9 @@
     {
         "title": "On Pawcation",
         "content": "Enjoying some days off with my human. I'm on pawcation!",
-        "date_created": "03/24/2020"
+        "date_created": "03/24/2020",
+        "image": "images/stock-image.jpg"
+        
     },
     {
         "title": "Second Birthday",

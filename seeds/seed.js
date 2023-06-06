@@ -20,6 +20,11 @@ const seedDatabase = async () => {
     });
   }
 
+  const events = await Event.bulkCreate(eventData, {
+    individualHooks: true,
+    returning: true,
+  });
+
   process.exit(0);
 };
 
