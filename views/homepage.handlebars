@@ -1,16 +1,30 @@
-<!-- Loop over each object in the projects array -->
-{{#each posts as |post| }}
+<!-- Loop over each object in the post array -->
 <div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <a href="/post/{{post.id}}">{{post.title}}</a> 
-    </h2>
-    
-    <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
-    
+  <div class="col-6">
+    {{#each posts as |post| }}
+    <div class="row">
+      <div class="col-6 text-center">
+        <h2>
+          <a href="/post/{{post.id}}">{{post.title}}</a>
+        </h2>
+
+        <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+
+      </div>
+      <div class="col-6">
+        <img src={{post.image}}>
+      </div>
+    </div>
+
+    {{/each}}
   </div>
-  <div class="col-md-7">
-    <img src={{post.image}}>
+  <div class="col-6">
+    {{#each events as |event|}}
+    <div class="text-center">
+      <h2 class="m-auto">{{event.title}} on {{format_date event.date_on}}</h2>
+      <h4>{{event.description}}</h4>
+      <p>Created by {{user.name}}</p>
+    </div>
+    {{/each}}
   </div>
 </div>
-{{/each}}

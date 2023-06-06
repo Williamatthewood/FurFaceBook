@@ -1,11 +1,9 @@
-<div class="row">
-  <div class="col-auto">
+<div class="row mb-4 project">
+  <div class="col-12 mb-2">
     <h2>Welcome, {{name}}!</h2>
   </div>
-</div>
+  <div class="col-6">
 
-<div class="row mt-4">
-  <div class="col-md-6">
     <h3>New Post:</h3>
 
     <form action"/api/post" method="post" class="form new-post-form" enctype="multipart/form-data">
@@ -24,22 +22,61 @@
     </form>
   </div>
 
-  {{#if posts.length}}
-  <div class="col-md-6 post-list">
-    <h3>My Posts:</h3>
+  <div class="col-6">
+    <h3>New Event:</h3>
 
-    {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+    <form action"/api/events" method="post" class="form new-event-form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="event-title">Event Title:</label>
+        <input class="form-input" type="text" id="event-title" name="event-title" />
+
+        <label for="event-description">Describe your event:</label>
+        <input class="form-textarea" type="text" id="event-description" name="event-description" />
+
+        <label for="event-date">Date for your event:</label>
+        <input class="form-date" type="date" id="event-date" name="event-date">
+        <br>
+        <button type="submit" class="btn btn-primary">Create</button>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
+    </form>
   </div>
-  {{/if}}
-</div>
 
-<script src="./js/profile.js"></script>
+  <div class="col-6 my-4">
+    {{#if posts.length}}
+    <div class="post-list">
+      <h3>My Posts:</h3>
+
+      {{#each posts as |post|}}
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="col-6 my-4">
+    {{#if events.length}}
+    <div class="event-list">
+      <h3>My Events:</h3>
+
+      {{#each events as |event|}}
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4>{{event.title}}</h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" data-id="{{event.id}}">DELETE</button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+
+  <script src="./js/profile.js"></script>

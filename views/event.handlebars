@@ -1,0 +1,7 @@
+{{#each events as |event|}}
+<div class="text-center">
+    <h2 class = "m-auto">{{event.title}} on {{format_date event.date_on}}</h2>
+    <h4>{{event.description}}</h4>
+    <p>Created by {{user.name}}</p>
+</div>
+{{/each}}
