@@ -1,3 +1,5 @@
+const postList = document.querySelector('.post-list');
+
 const newFormHandler = async (event) => {
     event.preventDefault();
   
@@ -55,6 +57,8 @@ const newFormHandler = async (event) => {
     .querySelector('.new-post-form')
     .addEventListener('submit', newFormHandler);
   
+  if (postList) {
   document
     .querySelector('.post-list')
     .addEventListener('click', delButtonHandler);
+  }
