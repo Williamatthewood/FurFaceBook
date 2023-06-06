@@ -2,7 +2,9 @@
     <h2>{{title}}</h2>
     <p>{{content}}</p>
     <p>Created by {{user.name}} on {{format_date date_created}}</p>
+    {{#if image}}
     <img src=http://localhost:3001/{{image}}>
+    {{/if}}
     {{!-- <p>
         <button class="btn btn-warn">Delete</button>
     </p> --}}
