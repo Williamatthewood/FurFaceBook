@@ -35,6 +35,9 @@ const newFormHandler = async (event) => {
       }
   
       
+    } else {
+      alert("You must fill in both text boxes to submit your post!");
+      return;
     }
   };
 
