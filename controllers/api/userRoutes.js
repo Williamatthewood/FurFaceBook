@@ -1,13 +1,22 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+let is_heroku;
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
+    if (req.rawHeaders[1] === 'localhost:3001') {
+      is_heroku = false;
+    } else {
+      is_heroku = true;
+    }
+
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.is_heroku = is_heroku;
 
       res.status(200).json(userData);
     });
@@ -19,6 +28,12 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (req.rawHeaders[1] === 'localhost:3001') {
+      is_heroku = false;
+    } else {
+      is_heroku = true;
+    }
 
     if (!userData) {
       res
@@ -39,6 +54,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.is_heroku = is_heroku;
       
       res.json({ user: userData, message: 'You are now logged in!' });
     });

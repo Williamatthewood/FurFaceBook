@@ -3,7 +3,11 @@
     <h4>{{content}}</h4>
     <p class= "{{fs}}" >Created by {{user.name}} on {{format_date date_created}}</p>
     {{#if image}}
+    {{#if is_heroku}}
     <img src=https://furfacebook-app.herokuapp.com/{{image}}>
+    {{else}}
+    <img src=http://localhost:3001/{{image}}>
+    {{/if}}
     {{/if}}
     {{!-- <p>
         <button class="btn btn-warn">Delete</button>
