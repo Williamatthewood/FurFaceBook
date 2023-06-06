@@ -1,7 +1,9 @@
 # FurFaceBook
 
 
-## This application was built with animal lovers in mind. It's a place where enthusiasts of all types
+## Description
+
+This application was built with animal lovers in mind. It's a place where enthusiasts of all types
 of animals can connect and find out about, or discuss events, services, or issues regarding the local animal community. 
 
 The motivation for building this application was to give people an easily accessible site
@@ -19,4 +21,12 @@ feathered, hairy, or scaled friend was in good hands.
 
 This project allowed us to learn more about collaboration, our strengths and weaknesses, as well as
 having to research new programs for use that we need to implement, even if we're not familiar with it.
+
+## Screenshot
+
+![Screenshot 2023-06-06 at 6 29 16 PM](https://github.com/Williamatthewood/FurFaceBook/assets/112597870/8835c6c8-fbae-4280-8202-a09250c91133)
+
+## Link to Application
+
+https://furfacebook-app.herokuapp.com/
 
